@@ -19,7 +19,6 @@ Run as: python -m exp.exp2
 """
 from __future__ import annotations
 
-import argparse
 import logging
 import os
 
@@ -228,7 +227,7 @@ def make_plots(panel: pd.DataFrame, output_dir: str) -> None:
     logger.info("Saved plot to %s", path)
 
 
-def main(full: bool = False) -> None:
+def main() -> None:
     os.makedirs(config.RESULTS_DIR, exist_ok=True)
     logger.info(
         "Amazon A/B-testing data is proprietary and not released with the paper; "
@@ -249,8 +248,7 @@ def main(full: bool = False) -> None:
     stability.to_csv(stability_path, index=False)
     logger.info("Saved stability summary to %s", stability_path)
 
-    b_values = config.EXP2_BIMLE_B_SENSITIVITY if full else config.EXP2_BIMLE_B_SENSITIVITY
-    sensitivity = sensitivity_analysis(data, b_values=b_values)
+    sensitivity = sensitivity_analysis(data, b_values=config.EXP2_BIMLE_B_SENSITIVITY)
     sensitivity_path = os.path.join(config.RESULTS_DIR, "exp2_bimle_sensitivity.csv")
     sensitivity.to_csv(sensitivity_path, index=False)
     logger.info("Saved BIMLE sensitivity table to %s", sensitivity_path)
@@ -259,7 +257,8 @@ def main(full: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run Experiment 2: Empirical Application to A/B tests")
-    parser.add_argument("--full", action="store_true", help="Run the full paper configuration (sensitivity grid over b).")
-    args = parser.parse_args()
-    main(full=args.full)
+    # The panel (4 metrics x 6 half-years) and the b-sensitivity grid
+    # (paper Appendix A / Tables 3-4) are both already at their paper size
+    # in src/config.py, so this script always runs the full configuration;
+    # no --full flag or reduced configuration is needed.
+    main()

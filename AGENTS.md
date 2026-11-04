@@ -39,8 +39,10 @@ pip install -r requirements.txt
 python -m pytest -m "not market_data"   # equivalent to `python -m pytest` here: no test is marked market_data
 
 python -m exp.exp1          # Experiment 1 (paper Section 6)
-python -m exp.exp2          # Experiment 2 (paper Section 7)
-python -m exp.exp2 --full   # same pipeline, full b-sensitivity grid (paper Tables 3-4)
+python -m exp.exp2          # Experiment 2 (paper Section 7); always runs the paper's
+                             # full panel (4 metrics x 6 half-years) and b-sensitivity
+                             # grid (paper Tables 3-4), already small enough not to need
+                             # a reduced configuration
 
 ./reproduce.sh              # tests, then both experiments
 ```

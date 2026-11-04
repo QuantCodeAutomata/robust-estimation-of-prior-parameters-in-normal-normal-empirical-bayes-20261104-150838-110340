@@ -65,7 +65,6 @@ python -m pytest
 ```bash
 python -m exp.exp1          # Experiment 1: contamination simulation (paper Section 6)
 python -m exp.exp2          # Experiment 2: empirical application (paper Section 7)
-python -m exp.exp2 --full   # same pipeline, full sensitivity grid over b
 ```
 
 Or run everything with:
