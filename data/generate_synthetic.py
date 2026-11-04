@@ -73,9 +73,10 @@ def generate_synthetic_ab_tests(seed: int = config.SYN_SEED) -> pd.DataFrame:
     """Synthetic analogue of the Amazon A/B-testing panel described in Section 7.
 
     Builds one row per synthetic test, with columns ["metric", "half_year",
-    "delta_hat", "tau_sq"], matching the generic schema requested in the
-    implementation notes for the empirical application. Each (metric,
-    half_year) cell draws SYN_TESTS_PER_PERIOD tests from a normal-normal
+    "delta_hat", "tau_sq"], matching the generic panel structure of Section 7
+    (per-test estimated treatment impact and sampling variance, grouped by
+    metric and half-year period). Each (metric, half_year) cell draws
+    SYN_TESTS_PER_PERIOD tests from a normal-normal
     model with metric-specific (mu, sigma) and heterogeneous sampling
     variances, then injects extreme observations in the cells listed in
     SYN_CONTAMINATED_PERIODS, mimicking the paper's qualitative description of

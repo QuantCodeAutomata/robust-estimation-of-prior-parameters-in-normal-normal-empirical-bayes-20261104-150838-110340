@@ -51,15 +51,15 @@ EXP1_EXPECTED_SIGMA2 = {  # Figure 1, right chart (number of contaminated obs ->
 # ---------------------------------------------------------------------------
 # Experiment 2: Empirical Application to Amazon A/B Tests (paper Section 7)
 # ---------------------------------------------------------------------------
-# The Amazon A/B-testing dataset underlying Tables 1-4 is proprietary and is not
-# released with the paper (Section 7, implementation notes). It cannot be
-# retrieved from the QuantX Dataloader or Massive REST APIs, which serve
-# market/OHLCV data, not internal experimentation-platform records. The
-# pipeline below is exercised on synthetic data generated in
-# data/generate_synthetic.py to match the paper's described structure (four
-# metrics, six half-year periods, occasional contaminated periods), so that
-# every estimator, confidence interval, and stability statistic in the paper's
-# methodology is computed by the same code that would run on the real data.
+# The Amazon A/B-testing dataset underlying Tables 1-4 is proprietary and is
+# not released with the paper (Section 7). It cannot be retrieved from the
+# QuantX Dataloader or Massive REST APIs, which serve market/OHLCV data, not
+# internal experimentation-platform records. The pipeline below is exercised
+# on synthetic data generated in data/generate_synthetic.py to match the
+# paper's described structure (four metrics, six half-year periods,
+# occasional contaminated periods), so that every estimator, confidence
+# interval, and stability statistic in the paper's methodology is computed by
+# the same code that would run on the real data.
 EXP2_METRICS = ["Metric A", "Metric B", "Metric C", "Metric D"]  # four illustrative metrics, paper Section 7
 EXP2_HALF_YEARS = ["2023-H1", "2023-H2", "2024-H1", "2024-H2", "2025-H1", "2025-H2"]  # paper Section 7
 EXP2_BIMLE_B_MAIN = 15.0  # recommended BIMLE tuning constant, paper Section 4 ("We recommend a default of b = 15")
